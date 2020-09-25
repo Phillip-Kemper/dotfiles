@@ -1,6 +1,4 @@
-echo Setting abbreviations... 
-echo Flutter Config
-export PATH="$PATH:/Users/phillip/development/flutter/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 
 abbr g 'git'
@@ -26,5 +24,12 @@ abbr gst 'git stash'
 abbr k 'kubectl'
 abbr d 'docker'
 
+function nvm
+   bass source ~/.nvm/nvm.sh --no-use ';' nvm $argv
+end
 
-echo Done
+set -x NVM_DIR ~/.nvm
+nvm use default --silent
+
+starship init fish | source
+status --is-interactive; and source (jump shell fish | psub)
